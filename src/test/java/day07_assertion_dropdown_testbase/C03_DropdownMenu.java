@@ -1,5 +1,7 @@
 package day07_assertion_dropdown_testbase;
 
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -9,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
+import java.util.List;
 
 public class C03_DropdownMenu {
     /*
@@ -51,6 +54,8 @@ public class C03_DropdownMenu {
        driver.get("https://testcenter.techproeducation.com/index.php?page=dropdown");
     }
 
+
+
     @Test
     public void test01() {
         //  a. Yil,ay,gün dropdown menu'leri locate ediniz
@@ -64,11 +69,70 @@ public class C03_DropdownMenu {
         Select selectGun = new Select(gun);
 
         // c. Select object'i kullaarak 3 farkli sekilde secim yapiniz
-        selectYil.selectByIndex(5);
+
+
+
+        selectYil.selectByIndex(5); //indexe göre seçilir (0'dan başlar)
         selectAy.selectByValue("4"); //option value="4">4</option>
-        selectGun.selectByVisibleText("9");
-
-
+        selectGun.selectByVisibleText("9"); //ekranda görülen değere göre seçilir
 
     }
+
+
+    @Test
+    public void test02() {
+        //  a. Tüm eyalet isimlerini yazdıralım
+        WebElement eyaletlerDropDown = driver.findElement(By.xpath("//*[@id='state']"));
+        Select select = new Select(eyaletlerDropDown);
+        List<WebElement> eyaletlerListesiWebElement = select.getOptions();
+
+        for (WebElement w : eyaletlerListesiWebElement ) {
+            System.out.println(w.getText());
+        }
+
+        /*
+
+    //ikinci yol Lambda
+        eyaletlerListesiWebElement.forEach(t-> System.out.println(t.getText()));
+
+        */
+
+    }
+
+    @Test
+    public void test03() {
+
+
+
+        List<WebElement> eyaletlerListesiWebElement =  driver.findElements(By.xpath("//*[@id='state']/option"));
+        eyaletlerListesiWebElement.forEach(t-> System.out.println(t.getText()));
+    }
+
+    @Test
+    public void test04() {
+       // a. State dropdownindaki varsayilan secili secenegin 'Select a State' oldugunu verify edelim
+        WebElement eyaletlerDropDown = driver.findElement(By.xpath("//*[@id='state']"));
+        Select select = new Select(eyaletlerDropDown);
+        String expectedOption = "Select a State";
+        String actualOption = select.getFirstSelectedOption().getText();
+
+        Assert.assertEquals(expectedOption,actualOption);
+
+    }
+
+    @Test
+    public void test05() {
+        //genelde dropdown webelementine sendKeys() methodu ile seceneklerden bir tanesini göndererek te secim yapabiliriz
+        WebElement eyaletlerDropDown =  driver.findElement(By.xpath("//*[@id='state']"));
+        eyaletlerDropDown.sendKeys("Alabama");
+
+    }
+
+
+    @After
+    public void tearDown() throws Exception {
+        driver.close();
+    }
+
+
 }
