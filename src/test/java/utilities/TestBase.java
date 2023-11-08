@@ -5,10 +5,11 @@ import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
 
-public class TestBase {
+public abstract class TestBase {
     protected WebDriver driver;
 
     @Before
@@ -23,4 +24,26 @@ public class TestBase {
     public void tearDown() throws Exception {
         driver.close();
     }
+
+    //Select Visible Text DropDown
+    public void selectVisible(WebElement ddm, String option){
+        Select select = new Select(ddm);
+        select.selectByVisibleText(option);
+    }
+
+    //Select index DropDown
+    public void selectIndex (WebElement ddm, int index) {
+        Select select = new Select(ddm);
+        select.selectByIndex(index);
+    }
+
+    // Hard Wait
+    public void waitForSecond(int sec) {
+        try {
+            Thread.sleep(sec*1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
