@@ -20,10 +20,10 @@ public abstract class TestBase {
     }
 
 
-    @After
-    public void tearDown() throws Exception {
-        driver.quit();
-    }
+   @After
+   public void tearDown() throws Exception {
+       driver.quit();
+   }
 
     //Select Visible Text DropDown
     public void selectVisible(WebElement ddm, String option){

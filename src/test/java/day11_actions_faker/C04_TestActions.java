@@ -38,12 +38,26 @@ public class C04_TestActions extends TestBase {
         searchBox.sendKeys(Keys.SHIFT,"selenium", Keys.SHIFT,"-java");
         waitForSecond(3);
     }
-       /*
-       ÖDEV:
-       //google sayfasına gidelim
-       //Arama kutusuna "Selenium" yazın ve Enter tuşuna basın
-       //Arattığımız kelimeyi arama kutusundan ctrl+x ile keselim
-       //Tekrar google sayfasına gidip kestiğimiz kelimeyi ctrl+v ile yapıştırıp tekrar aratalım
-        */
+
+    @Test
+    public void testOdev() {
+        //google sayfasına gidelim
+        driver.get("https://google.com");
+        //Arama kutusuna "Selenium" yazın ve Enter tuşuna basın
+        driver.findElement(By.id("APjFqb")).sendKeys("Selenium",Keys.ENTER);
+        //Arattığımız kelimeyi arama kutusundan ctrl+x ile keselim
+        WebElement searchBox = driver.findElement(By.id("APjFqb"));
+        searchBox.sendKeys(Keys.CONTROL,"a");
+        searchBox.sendKeys(Keys.CONTROL,"x");
+        //Tekrar google sayfasına gidip kestiğimiz kelimeyi ctrl+v ile yapıştırıp tekrar aratalım
+        driver.get("https://google.com");
+        WebElement searchBox2 = driver.findElement(By.id("APjFqb"));
+        searchBox2.sendKeys(Keys.CONTROL,"v",Keys.ENTER);
+        waitForSecond(2);
+    }
+
+
+
+
 
 }

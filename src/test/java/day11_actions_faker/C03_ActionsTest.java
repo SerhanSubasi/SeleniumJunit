@@ -1,5 +1,6 @@
 package day11_actions_faker;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -55,13 +56,18 @@ public class C03_ActionsTest extends TestBase {
         WebElement drop = driver.findElement(By.xpath("//div[@id='droppable']"));
         actions.clickAndHold(drag).moveByOffset(161,22).release().perform();
 waitForSecond(4);
+
+// Homework Drad webelementinin drop webelementinin üzerine bırakıldığını doğrulayınız.
+String actualText = driver.findElement(By.xpath("//p[text()='Dropped!']")).getText();
+String expectedText = "Dropped!";
+        Assert.assertEquals(expectedText,actualText);
     }
 
 /*
 NOT: Konumlar incele sayfasının sağ köşesinde görünüyor, oradan bakıp nokta atışı bulabilirsin.
  */
 
- // Homework Drad webelementinin drop webelementinin üzerine bırakıldığını doğrulayınız.
+
 
 
 
