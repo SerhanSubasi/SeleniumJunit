@@ -25,17 +25,20 @@ public class C06_FakerTest extends TestBase {
                 Locale locale = new Locale("tr");
                 Faker faker = new Faker(locale);
                 String email = faker.internet().emailAddress();
-             // String lastName = faker.name().lastName();
-                firstNameBox.sendKeys(faker.name().firstName(), Keys.TAB,faker.name().lastName(),Keys.TAB,email
-                        ,Keys.TAB,email,Keys.TAB,faker.internet().password(),Keys.TAB);
+        // String lastName = faker.name().lastName();
         //"lastname" giris kutusuna bir soyisim yazin
         //"email" giris kutusuna bir email yazin
         //"email" onay kutusuna emaili tekrar yazin
         //Bir sifre girin
+                firstNameBox.sendKeys(faker.name().firstName(), Keys.TAB,faker.name().lastName(),Keys.TAB,email);
+                waitForSecond(2);
         //Tarih icin gun secin
-        firstNameBox.sendKeys("sa");
         //Tarih icin ay secin
         //Tarih icin yil secin
         //Cinsiyeti secin
+
+
     }
+
+
 }
