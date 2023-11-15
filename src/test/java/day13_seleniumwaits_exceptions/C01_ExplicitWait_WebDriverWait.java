@@ -35,6 +35,13 @@ public class C01_ExplicitWait_WebDriverWait extends TestBase {
         Bir WebElement'in sayfa yüklendikten sonra etkileşime girebilmesi için max belirtmiş olduğumuz
         süre kadar ve belirtebileceğimiz aralıklarla bekler.
 
+Ana Farklar:
+
+ 1. Implicit Wait, tüm sayfa için genel bir bekleme süresi belirlerken, Explicit Wait belirli bir koşulu karşılayana kadar bekler.
+
+ 2. Implicit Wait, bir kere tanımlandığında tüm WebDriver işlemleri boyunca geçerli olur. Explicit Wait ise belirli bir bekleme süresini sadece ihtiyaç duyulan yerlerde kullanmanıza olanak tanır.
+
+ 3. Explicit Wait, daha esnek ve spesifik bekleme stratejileri uygulamanıza olanak tanır, bu da test senaryolarını daha güçlü ve güvenilir hale getirebilir.
 
      */
 
