@@ -39,7 +39,7 @@ public class C01_ExplicitWait_WebDriverWait extends TestBase {
      */
 
     @Test
-    public void test01() {
+    public void test01() { //1. YÖNTEM İYİDİR
 
         //https://the-internet.herokuapp.com/dynamic_loading/1
         driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
