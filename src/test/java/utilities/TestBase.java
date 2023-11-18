@@ -2,12 +2,16 @@ package utilities;
 
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class TestBase {
     protected WebDriver driver;
@@ -56,4 +60,28 @@ public abstract class TestBase {
         driver.switchTo().frame(index);
     }
 
+    //Screenshot
+    public void screenShot() {
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+        String dosyaYolu = "C:\\Users\\Anduril\\IdeaProjects\\B189SeleniumJunitDT\\src\\test\\java\\screenShots\\"+date+"screenShot.png";
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        try {
+            Files.write(Paths.get(dosyaYolu),ts.getScreenshotAs(OutputType.BYTES));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    //webelementScreenShot
+
+    public void screenShotOfWebElement (WebElement webElement) {
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+        String dosyaYolu = "C:\\Users\\Anduril\\IdeaProjects\\B189SeleniumJunitDT\\src\\test\\java\\screenShots\\"+date+"webElementSS.png";
+        try {
+            Files.write(Paths.get(dosyaYolu),webElement.getScreenshotAs(OutputType.BYTES));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
