@@ -73,13 +73,15 @@ public abstract class TestBase {
     }
 
 
-    //webelementScreenShot
+    //webelement screenshot
+    public void screenShotOfWebElement(WebElement webElement){
 
-    public void screenShotOfWebElement (WebElement webElement) {
-        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
-        String dosyaYolu = "C:\\Users\\Anduril\\IdeaProjects\\B189SeleniumJunitDT\\src\\test\\java\\screenShots\\"+date+"webElementSS.png";
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format( LocalDateTime.now() );
+
+        String dosyaYolu="src\\test\\java\\screenShots\\"+date+"webElementSS.png";
+
         try {
-            Files.write(Paths.get(dosyaYolu),webElement.getScreenshotAs(OutputType.BYTES));
+            Files.write(  Paths.get(dosyaYolu) , webElement.getScreenshotAs(OutputType.BYTES) );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
