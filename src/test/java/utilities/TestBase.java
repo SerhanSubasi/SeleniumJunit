@@ -1,7 +1,11 @@
 package utilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
@@ -15,6 +19,50 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class TestBase {
     protected WebDriver driver;
+
+    protected ExtentReports extentReports;
+    protected ExtentHtmlReporter extentHtmlReporter;
+
+    protected ExtentTest extentTest;
+
+
+    public void rapor(String browser, String reportName){
+           /*
+        1- ExtentReport classindan raporlamayi baslatmasi icin bir object olusturmaliyiz
+        2- ExtentHtmlReporter class indan raporlari html formatinda olusturmasi icin bir object olusturmaliyiz
+        3- EXtentTest Classindan test adimlarina bilgi ekleyebilmek icin bir object olustururuz
+         */
+
+        //bu object i raporlari olusturmak ve yonetmek icin kullanacacğız
+        extentReports = new ExtentReports();
+
+        //Oncelikle olusturmak istedigimiz html reprotu projemizde nerede saklamak istiyorsak bir dosya yolu olusturmaliyiz
+        //cunku bu pathi kullanarak bir tane html report olusturacağız
+        //bunun icinde ExtentHtmlReporter classindan bir object olusturmaliyiz
+
+        String date = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss").format(LocalDateTime.now());
+        String path = "target/extentReport/" + date + "htmlReport.html";
+        extentHtmlReporter = new ExtentHtmlReporter(path);
+
+        //ExtentReports a Html raporlayiciyi ekler, bu raporun html formatinda olusturulmasini saglar
+        extentReports.attachReporter(extentHtmlReporter);
+
+
+        //Html raporunun belge basligini ayarlar, bu baslik sekme uzerinde görünür
+        extentHtmlReporter.config().setDocumentTitle("Batch 189 Test Reports");
+
+        //Raporun adini ayarladik, Bu raporda gorunecek olan genel baslik
+        extentHtmlReporter.config().setReportName(reportName);
+
+        //Bu html raporunda görmek isteyebileceğimiz herhangi bir bilgiyi asagidaki formatta ekleyebilirz
+        extentReports.setSystemInfo("Enviroment", "QA");
+        extentReports.setSystemInfo("Browser", browser);
+        extentReports.setSystemInfo("Test Automation Engineer", "Serhan Subaşı");
+    }
+
+
+
+
 
     @Before
     public void setUp() throws Exception {
@@ -86,4 +134,8 @@ public abstract class TestBase {
             throw new RuntimeException(e);
         }
     }
+
+
+
+
 }
