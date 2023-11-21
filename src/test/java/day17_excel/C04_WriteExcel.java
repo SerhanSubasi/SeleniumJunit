@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.junit.Test;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class C04_WriteExcel {
@@ -11,7 +12,8 @@ public class C04_WriteExcel {
     @Test
     public void writeExcel() throws IOException {
 
-        FileInputStream fis = new FileInputStream("src\\test\\java\\resources\\mysmoketestdata.xlsx");
+        String path = "C:\\Users\\Anduril\\IdeaProjects\\B189SeleniumJunitDT\\src\\test\\java\\resources\\mysmoketestdata.xlsx";
+        FileInputStream fis = new FileInputStream(path);
         Workbook workbook = WorkbookFactory.create(fis);
 
         //mysmoketestdata.xlsx dosyasina STATUS adinda ucuncu bir sutun olusturunuz
@@ -27,6 +29,11 @@ public class C04_WriteExcel {
         sheet.getRow(3).createCell(2).setCellValue("invalid");
 
 
+        // Yazarken çıkmak için fos objesi oluşturup write yapmak lazım.
+        FileOutputStream fos = new FileOutputStream(path);
+        workbook.write(fos);
+        fis.close();
+        fos.close();
 
     }
 
