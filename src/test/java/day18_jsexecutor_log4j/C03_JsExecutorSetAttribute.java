@@ -34,7 +34,7 @@ public class C03_JsExecutorSetAttribute extends TestBase {
     }
 
     @Test
-    public void setAttribute() { //id değerinin değiştirilebileceği senaryo
+    public void setAttribute() { //id değerinin değiştirilebileceği senaryo (her seferinde farklı id ile gelen sayfalarda kullanılabilir)
 
         //amazon sayfasına gidelim
         driver.get("https://amazon.com");
