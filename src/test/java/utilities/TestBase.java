@@ -72,7 +72,7 @@ public abstract class TestBase {
 
    @After
    public void tearDown() throws Exception {
-       driver.quit();
+      // driver.quit();
    }
 
     //Select Visible Text DropDown
@@ -163,6 +163,12 @@ public abstract class TestBase {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
     }
+
+//Js Executor SendKeys
+public void jsSendKeys(WebElement webElement, String value) {
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    js.executeScript("arguments[0].value='"+value+"'",webElement);
+}
 
 
 
