@@ -20,5 +20,14 @@ public class C02_JsExecutorScroll extends TestBase {
         js.executeScript("arguments[0].scrollIntoView(true);",challengesText); //true yazınca parametre olarak, ekranın yukarısında görünür, false olursa aşağıda.
     }
 
+    @Test
+    public void scrollWithJS2() {
+        //techproeducation sayfasına gidelim
+        driver.get("https://techproeducation.com");
+
+        //sayfanın en altına scroll yapalım
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)"); //x-y ekseninde piksel miktarı giriyoruz.
+    }
 
 }

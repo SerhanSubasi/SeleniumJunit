@@ -145,6 +145,25 @@ public abstract class TestBase {
         }
     }
 
+    //JS Executor Scroll Webelement Method
+    public void jsScroll(WebElement webelement){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", webelement);
+    }
+
+    //JS Executor Scroll End
+    public void jsScrollToEnd(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+    }
+
+
+    //JS Executor Scroll Home
+    public void jsScrollToHome(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,-document.body.scrollHeight)");
+    }
+
 
 
 }
