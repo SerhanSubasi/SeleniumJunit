@@ -33,6 +33,21 @@ public class C04_JsExecutorLocate extends TestBase { //id'si shadow'a gömülü 
         String searchBoxValue = js.executeScript("return document.getElementById('twotabsearchtextbox').value").toString();
         System.out.println(searchBoxValue);
         Assert.assertEquals("selenium",searchBoxValue);
+
+
+        String typeAttributeDegeri =js.executeScript("return document.getElementById('twotabsearchtextbox').type").toString();
+        System.out.println(typeAttributeDegeri);
+
+        String nameAttributeDegeri =js.executeScript("return document.getElementById('twotabsearchtextbox').name").toString();
+        System.out.println(nameAttributeDegeri);
+
+
+        String classAttributeDegeri =js.executeScript("return document.getElementById('twotabsearchtextbox').className").toString();
+        System.out.println(classAttributeDegeri);
+
+
+
+
     }
 
 
