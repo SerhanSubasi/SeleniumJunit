@@ -17,7 +17,7 @@ public class C02_JsExecutorScroll extends TestBase {
         //Challenges a kadar scroll yapiniz
         WebElement challengesText = driver.findElement(By.xpath("//*[.='Challenges']"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",challengesText);
+        js.executeScript("arguments[0].scrollIntoView(true);",challengesText); //true yazınca parametre olarak, ekranın yukarısında görünür, false olursa aşağıda.
     }
 
 
