@@ -24,8 +24,16 @@ public class C01_JsExecutorClick extends TestBase {
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();",sellLinki);
-
-
-
     }
+
+    @Test
+    public void test02() {  //DataBase'e method oluşturduktan sonraki kolay kullanım örneği
+        //amazona gidelim
+        driver.get("https://amazon.com");
+
+        //sell linkine tıklayalım
+        WebElement sellLinki = driver.findElement(By.xpath("//*[.='Sell']"));
+        jsClick(sellLinki);
+    }
+
 }

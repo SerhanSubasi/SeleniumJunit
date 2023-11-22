@@ -62,8 +62,6 @@ public abstract class TestBase {
 
 
 
-
-
     @Before
     public void setUp() throws Exception {
         driver = new ChromeDriver();
@@ -135,6 +133,17 @@ public abstract class TestBase {
         }
     }
 
+
+    //JSexecutor Click Method
+    public void jsClick (WebElement webElement) {
+
+        try {
+            webElement.click();
+        } catch (Exception e) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].click();",webElement);
+        }
+    }
 
 
 
